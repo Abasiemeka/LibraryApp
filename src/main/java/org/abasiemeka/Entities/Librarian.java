@@ -20,7 +20,6 @@ public class Librarian {
 
     private static Hashtable<Book, User> sortByDesignationPriority(Hashtable<Book, User> bookRequestsFIFO) {
         //todo: change borrowedbooks vollection to linkedhashmap or linkedhashset to maintain the order of entries
-
         return null; //FIXME: implement properly
     }
 
