@@ -2,15 +2,15 @@ package org.abasiemeka.Entities;
 
 import org.abasiemeka.Main;
 
-import java.util.Hashtable;
-import java.util.Map;
+import java.util.TreeSet;
+import java.util.stream.Stream;
 
 public class Librarian {
-    private static Hashtable<Book, User> bookRequestsFIFO = new Hashtable<>();
-    private static Hashtable<Book, User> bookRequestsSorted = new Hashtable<>();
+    private static TreeSet<User> bookRequestsFIFO = new TreeSet<>();
+    private static TreeSet<User> bookRequestsSorted = new TreeSet<>();
 
-    public static void addToBookRequestsFIFO(Book book, User user) {
-        bookRequestsFIFO.put(book, user);
+    public static void addToBookRequestsFIFO(User user) {
+        bookRequestsFIFO.add(user);
         bookRequestsSorted = sortByDesignationPriority(bookRequestsFIFO);
     }
 
@@ -18,9 +18,9 @@ public class Librarian {
         return Boolean.TRUE; //FIXME: implement properly
     }
 
-    private static Hashtable<Book, User> sortByDesignationPriority(Hashtable<Book, User> bookRequestsFIFO) {
-        //todo: change borrowedbooks vollection to linkedhashmap or linkedhashset to maintain the order of entries
-        return null; //FIXME: implement properly
+    private static TreeSet<User> sortByDesignationPriority(TreeSet<User> bookRequestsFIFO) {
+        Stream<User> e = bookRequestsFIFO.stream().sorted();
+        bookRequestsSorted.add();
     }
 
     public static void issueBook(Book book, User user) {
@@ -36,5 +36,18 @@ public class Librarian {
         } else {
             //Do Sort by designation priority
         }
+    }
+
+    public static void printTreeSet(TreeSet<?> treeSet) {
+        System.out.println(treeSet);
+    }
+
+
+    //FIXME: only for testing. Delete after use.
+    public static TreeSet<User> getBookRequestsFIFO() {
+        return bookRequestsFIFO;
+    }
+    public static TreeSet<User> getBookRequestsSorted() {
+        return bookRequestsSorted;
     }
 }
