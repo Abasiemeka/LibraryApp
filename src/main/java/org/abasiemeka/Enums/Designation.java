@@ -1,15 +1,19 @@
 package org.abasiemeka.Enums;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Comparator;
+
 public enum Designation {
-    TEACHER(1), STUDENT_GRADE_1(2), STUDENT_GRADE_2(3), STUDENT_GRADE_3(4);
+    TEACHER(1), STUDENT_GRADE_2(3), STUDENT_GRADE_3(2), STUDENT_GRADE_1(4); //importance level deliberately staggered for testing purposes.
 
-    private final int priority;
+    private final Integer priority; //note: priorities have been assigned in ascending order from most important to least.
 
-    public int getPriority() {
+    public Integer getPriority() {
         return this.priority;
     }
 
-    private Designation(int priority) {
+    private Designation(Integer priority) {
         this.priority = priority;
     }
 }

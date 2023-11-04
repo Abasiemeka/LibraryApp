@@ -6,8 +6,6 @@ import org.abasiemeka.Entities.Library;
 import org.abasiemeka.Entities.User;
 import org.abasiemeka.Enums.Designation;
 
-import javax.management.relation.Role;
-
 public class Main {
     public static String chosenImplementation = "sorted";
 
@@ -15,46 +13,61 @@ public class Main {
         Book bible = new Book("The Holy Bible", "Inspiration", "Religion", 10);
         Library.searchByBookTitle("The Holy Bible");
 
-        User andrew = new User("Andrew","hghgffk","dhfjgkjhhsagfdg",Designation.TEACHER);
-        System.out.println(Librarian.getBookRequestsFIFO());
-        System.out.println(Librarian.getBookRequestsSorted());
+        User andrew = new User("Andrew Teach","hghgffk","dhfjgkjhhsagfdg",Designation.TEACHER);
+
+        System.out.println("User list contains:"); User.getUserList().forEach(user -> System.out.println(user.getName()));
+        printCollections();
+
         andrew.borrowBook(bible);
-        System.out.println(Librarian.getBookRequestsFIFO());
-        System.out.println(Librarian.getBookRequestsSorted());
+        printCollections();
 
-        User jose = new User("Jose","hghgffk","dhfjgkjhhsagfdg",Designation.STUDENT_GRADE_1);
-        System.out.println(Librarian.getBookRequestsFIFO());
-        System.out.println(Librarian.getBookRequestsSorted());
+        User jose = new User("Jose Three","hghgffk","dhfjgkjhhsagfdg",Designation.STUDENT_GRADE_3);
+
+        System.out.println("User list contains:"); User.getUserList().forEach(user -> System.out.println(user.getName()));
+        printCollections();
+
         jose.borrowBook(bible);
-        System.out.println(Librarian.getBookRequestsFIFO());
-        System.out.println(Librarian.getBookRequestsSorted());
+        printCollections();
 
-        User peter = new User("Peter","hghgffk","dhfjgkjhhsagfdg",Designation.STUDENT_GRADE_2);
-        System.out.println(Librarian.getBookRequestsFIFO());
-        System.out.println(Librarian.getBookRequestsSorted());
+        User peter = new User("Peter One","hghgffk","dhfjgkjhhsagfdg",Designation.STUDENT_GRADE_1);
+
+        System.out.println("User list contains:"); User.getUserList().forEach(user -> System.out.println(user.getName()));
+        printCollections();
+
         peter.borrowBook(bible);
-        System.out.println(Librarian.getBookRequestsFIFO());
-        System.out.println(Librarian.getBookRequestsSorted());
+        printCollections();
 
-        User lara = new User("Lara","hghgffk","dhfjgkjhhsagfdg",Designation.STUDENT_GRADE_3);
-        System.out.println(Librarian.getBookRequestsFIFO());
-        System.out.println(Librarian.getBookRequestsSorted());
+        User lara = new User("Lara Three","hghgffk","dhfjgkjhhsagfdg",Designation.STUDENT_GRADE_3);
+
+        System.out.println("User list contains:"); User.getUserList().forEach(user -> System.out.println(user.getName()));
+        printCollections();
+
         lara.borrowBook(bible);
-        System.out.println(Librarian.getBookRequestsFIFO());
-        System.out.println(Librarian.getBookRequestsSorted());
+        printCollections();
 
-        User paul = new User("Paul","hghgffk","dhfjgkjhhsagfdg",Designation.STUDENT_GRADE_2);
-        System.out.println(Librarian.getBookRequestsFIFO());
-        System.out.println(Librarian.getBookRequestsSorted());
+        User paul = new User("Paul Two","hghgffk","dhfjgkjhhsagfdg",Designation.STUDENT_GRADE_2);
+
+        System.out.println("User list contains:"); User.getUserList().forEach(user -> System.out.println(user.getName()));
+        printCollections();
+
         paul.borrowBook(bible);
-        System.out.println(Librarian.getBookRequestsFIFO());
-        System.out.println(Librarian.getBookRequestsSorted());
+        printCollections();
 
-        User smalls = new User("Smalls","hghgffk","dhfjgkjhhsagfdg",Designation.STUDENT_GRADE_2);
-        System.out.println(Librarian.getBookRequestsFIFO());
-        System.out.println(Librarian.getBookRequestsSorted());
+        User smalls = new User("Smalls Two","hghgffk","dhfjgkjhhsagfdg",Designation.STUDENT_GRADE_2);
+
+        System.out.println("User list contains:"); User.getUserList().forEach(user -> System.out.println(user.getName()));
+        printCollections();
+
         smalls.borrowBook(bible);
-        System.out.println(Librarian.getBookRequestsFIFO());
-        System.out.println(Librarian.getBookRequestsSorted());
+        printCollections();
+
+
+        System.out.println(paul.compareTo(peter));
+        System.out.println(paul.compareTo(lara));
+    }
+
+    public static void printCollections() {
+        System.out.println("Book requests array contains: "); Librarian.printBookRequestsFIFO();
+        System.out.println("Sorted book requests tree set contains: "); Librarian.printBookRequestsSorted();
     }
 }

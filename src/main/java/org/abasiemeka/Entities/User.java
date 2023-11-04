@@ -6,7 +6,7 @@ import org.abasiemeka.Enums.Designation;
 import org.jetbrains.annotations.NotNull;
 
 public class User implements Comparable<User> {
-    private static Hashtable<Integer, User> userList = new Hashtable<>();
+    private static ArrayList<User> userList = new ArrayList<>();
     private static AtomicInteger userIDSeed = new AtomicInteger(1000);
     private Integer userID;
     private String name;
@@ -16,17 +16,19 @@ public class User implements Comparable<User> {
     private HashMap<Integer, Book> borrowedBooksLocker = new HashMap<>();
     private ArrayList<Book> requestedBooksList = new ArrayList<>();
 
+    public static ArrayList<User> getUserList() {
+        return userList;
+    }
+
     public String getName() {
         return this.name;
     }
+    public Designation getDesignation() { return this.designation;}
 
     public void borrowBook(Book book) {
-        this.addToRequestedBooksList(book);
-        Librarian.addToBookRequestsFIFO(this);
-    }
-
-    private void addToRequestedBooksList(Book book) {
         requestedBooksList.add(book);
+        Librarian.addToBookRequestsFIFO(this);
+        System.out.println("request created for " + book.getTitle() + " by " + this.name);
     }
 
     public void returnBook (Book book) {
@@ -39,11 +41,12 @@ public class User implements Comparable<User> {
         this.email = email;
         this.address = address;
         this.designation = designation;
-        userList.put(this.userID, this);
+        userList.add(this);
+        System.out.println(this.name + " has been registered with designation " + this.designation);
     }
 
     @Override
     public int compareTo(@NotNull User user) {
-        return this.designation.compareTo(user.designation);
+        return this.designation.getPriority().compareTo(user.designation.getPriority());
     }
 }

@@ -1,13 +1,14 @@
 package org.abasiemeka.Entities;
 
+import org.abasiemeka.Enums.Designation;
 import org.abasiemeka.Main;
 
-import java.util.TreeSet;
-import java.util.stream.Stream;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Librarian {
-    private static TreeSet<User> bookRequestsFIFO = new TreeSet<>();
-    private static TreeSet<User> bookRequestsSorted = new TreeSet<>();
+    private static ArrayList<User> bookRequestsFIFO = new ArrayList<>();
+    private static ArrayList<User> bookRequestsSorted = new ArrayList<>();
 
     public static void addToBookRequestsFIFO(User user) {
         bookRequestsFIFO.add(user);
@@ -18,10 +19,8 @@ public class Librarian {
         return Boolean.TRUE; //FIXME: implement properly
     }
 
-    private static TreeSet<User> sortByDesignationPriority(TreeSet<User> bookRequestsFIFO) {
-        //FIXME: Fix this method
-        Stream<User> e = bookRequestsFIFO.stream().sorted();
-        bookRequestsSorted.add();
+    private static ArrayList<User> sortByDesignationPriority(ArrayList<User> bookRequestsFIFO) {
+        return (ArrayList<User>) bookRequestsFIFO.stream().sorted(User::compareTo).collect(Collectors.toList());
     }
 
     public static void issueBook(Book book, User user) {
@@ -30,25 +29,30 @@ public class Librarian {
             return;
         }
 
-        //Use the provided implementation option to decide method of issuance.
         boolean sorted = Main.chosenImplementation.equalsIgnoreCase("sorted");
         if (!sorted) {
-            //Do FIFO
+            //Issue by FIFO
         } else {
-            //Do Sort by designation priority
+            //Issue by designation priority
         }
     }
 
-    public static void printTreeSet(TreeSet<?> treeSet) {
-        System.out.println(treeSet);
+    public static void printBookRequestsFIFO() {
+        bookRequestsFIFO.forEach(user -> {
+            System.out.println(user.getName());
+        });
     }
-
+    public static void printBookRequestsSorted() {
+        bookRequestsSorted.forEach(user -> {
+            System.out.println(user.getName());
+        });
+    }
 
     //FIXME: only for testing. Delete after use.
-    public static TreeSet<User> getBookRequestsFIFO() {
+    public static ArrayList<User> getBookRequestsFIFO() {
         return bookRequestsFIFO;
     }
-    public static TreeSet<User> getBookRequestsSorted() {
+    public static ArrayList<User> getBookRequestsSorted() {
         return bookRequestsSorted;
     }
 }
