@@ -18,7 +18,7 @@ public class Main {
         System.out.println("User list contains:"); User.getUserList().forEach(user -> System.out.println(user.getName()));
         printCollections();
 
-        andrew.borrowBook(bible);
+        andrew.requestBook(bible);
         printCollections();
 
         User jose = new User("Jose Three","hghgffk","dhfjgkjhhsagfdg",Designation.STUDENT_GRADE_3);
@@ -26,7 +26,7 @@ public class Main {
         System.out.println("User list contains:"); User.getUserList().forEach(user -> System.out.println(user.getName()));
         printCollections();
 
-        jose.borrowBook(bible);
+        jose.requestBook(bible);
         printCollections();
 
         User peter = new User("Peter One","hghgffk","dhfjgkjhhsagfdg",Designation.STUDENT_GRADE_1);
@@ -34,7 +34,7 @@ public class Main {
         System.out.println("User list contains:"); User.getUserList().forEach(user -> System.out.println(user.getName()));
         printCollections();
 
-        peter.borrowBook(bible);
+        peter.requestBook(bible);
         printCollections();
 
         User lara = new User("Lara Three","hghgffk","dhfjgkjhhsagfdg",Designation.STUDENT_GRADE_3);
@@ -42,7 +42,7 @@ public class Main {
         System.out.println("User list contains:"); User.getUserList().forEach(user -> System.out.println(user.getName()));
         printCollections();
 
-        lara.borrowBook(bible);
+        lara.requestBook(bible);
         printCollections();
 
         User paul = new User("Paul Two","hghgffk","dhfjgkjhhsagfdg",Designation.STUDENT_GRADE_2);
@@ -50,7 +50,7 @@ public class Main {
         System.out.println("User list contains:"); User.getUserList().forEach(user -> System.out.println(user.getName()));
         printCollections();
 
-        paul.borrowBook(bible);
+        paul.requestBook(bible);
         printCollections();
 
         User smalls = new User("Smalls Two","hghgffk","dhfjgkjhhsagfdg",Designation.STUDENT_GRADE_2);
@@ -58,7 +58,7 @@ public class Main {
         System.out.println("User list contains:"); User.getUserList().forEach(user -> System.out.println(user.getName()));
         printCollections();
 
-        smalls.borrowBook(bible);
+        smalls.requestBook(bible);
         printCollections();
 
 

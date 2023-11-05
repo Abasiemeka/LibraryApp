@@ -7,7 +7,7 @@ import java.util.Objects;
 public class Library {
 
     private static HashMap<Book, ArrayList<?>> catalog = new HashMap<>();
-    private static HashMap<Book, User> currentlyBorrowed = new HashMap<>();
+    private static HashMap<User, ArrayList<Book>> currentlyBorrowed = new HashMap<User, ArrayList<Book>>();
 
     public static HashMap<Book, ArrayList<?>> getCatalog(){
         return catalog;
@@ -28,7 +28,7 @@ public class Library {
     public static void searchByAuthor(String author) {
         System.out.println("\nThe following books by " + author + " are available in our catalog:");
         for (Book book : catalog.keySet()
-             ) {
+        ) {
             if (book.getAuthor().equalsIgnoreCase(author)) {
                 System.out.println("\n" + book.getTitle());
             }
@@ -37,7 +37,7 @@ public class Library {
     public static void searchByCategory(String category) {
         System.out.println("\nThe following books in " + category + " category are available in our catalog:");
         for (Book book : catalog.keySet()
-             ) {
+        ) {
             if (book.getCategory().equalsIgnoreCase(category)) {
                 System.out.println("\n" + book.getTitle());
             }
@@ -58,13 +58,20 @@ public class Library {
             }
     }
 
-    public void giveBook(Book book, User borrower) {
+    public static void giveBook(Book book, User borrower) {
         book.setNumberOfLendableCopies(book.getNumberOfLendableCopies() - 1);
-        currentlyBorrowed.put(book, borrower);
+        ArrayList<Book> books = new ArrayList<>();
+        if (currentlyBorrowed.containsKey(borrower))
+            currentlyBorrowed.get(borrower).add(book);
+        else
+            currentlyBorrowed.put(borrower, books);
     }
 
-    public void receiveBook(Book book, User borrower) {
+    public static void receiveBook(Book book, User borrower) {
         book.setNumberOfLendableCopies(book.getNumberOfLendableCopies() + 1);
-        currentlyBorrowed.remove(book);
+        if (currentlyBorrowed.get(borrower).size() == 1)
+            currentlyBorrowed.remove(borrower);
+        else
+            currentlyBorrowed.get(borrower).remove(book);
     }
 }

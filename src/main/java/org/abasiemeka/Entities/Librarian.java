@@ -1,6 +1,5 @@
 package org.abasiemeka.Entities;
 
-import org.abasiemeka.Enums.Designation;
 import org.abasiemeka.Main;
 
 import java.util.*;
@@ -23,32 +22,45 @@ public class Librarian {
         return (ArrayList<User>) bookRequestsFIFO.stream().sorted(User::compareTo).collect(Collectors.toList());
     }
 
-    public static void issueBook(Book book, User user) {
-        if (!authorizedToBorrow(user)) {
-            System.out.printf("%n%s is not authorized to borrow from the library.", user.getName());
-            return;
-        }
-
+    public static void issueBooks() {
         boolean sorted = Main.chosenImplementation.equalsIgnoreCase("sorted");
         if (!sorted) {
             //Issue by FIFO
+            for (User user : bookRequestsFIFO) {
+                if (!authorizedToBorrow(user)) {
+                    System.out.printf("%n%s is not authorized to borrow from the library.", user.getName());
+                    return;
+                } else {
+                    for (Book book : user.getRequestedBooksList()) {
+                        Library.giveBook(book, user);
+                        user.receiveBook(book);
+                    }
+                }
+            }
         } else {
             //Issue by designation priority
+            for (User user : bookRequestsSorted){
+                if (!authorizedToBorrow(user)) {
+                    System.out.printf("%n%s is not authorized to borrow from the library.", user.getName());
+                    return;
+                } else {
+                    for (Book book : user.getRequestedBooksList()) {
+                        Library.giveBook(book, user);
+                        user.receiveBook(book);
+                    }
+                }
+            }
         }
     }
 
+    //FIXME: only for testing. Delete after use.
+
     public static void printBookRequestsFIFO() {
-        bookRequestsFIFO.forEach(user -> {
-            System.out.println(user.getName());
-        });
+        bookRequestsFIFO.forEach(user -> System.out.println(user.getName()));
     }
     public static void printBookRequestsSorted() {
-        bookRequestsSorted.forEach(user -> {
-            System.out.println(user.getName());
-        });
+            bookRequestsSorted.forEach(user -> System.out.println(user.getName()));
     }
-
-    //FIXME: only for testing. Delete after use.
     public static ArrayList<User> getBookRequestsFIFO() {
         return bookRequestsFIFO;
     }

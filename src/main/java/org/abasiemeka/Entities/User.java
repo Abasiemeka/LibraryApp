@@ -3,17 +3,17 @@ package org.abasiemeka.Entities;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.abasiemeka.Enums.Designation;
-import org.jetbrains.annotations.NotNull;
+//import org.jetbrains.annotations.NotNull;
 
 public class User implements Comparable<User> {
     private static ArrayList<User> userList = new ArrayList<>();
     private static AtomicInteger userIDSeed = new AtomicInteger(1000);
-    private Integer userID;
-    private String name;
-    private String email;
-    private String address;
-    private Designation designation;
-    private HashMap<Integer, Book> borrowedBooksLocker = new HashMap<>();
+    private final Integer userID;
+    private final String name;
+    private final String email;
+    private final String address;
+    private final Designation designation;
+    private ArrayList<Book> borrowedBooksLocker = new ArrayList<>();
     private ArrayList<Book> requestedBooksList = new ArrayList<>();
 
     public static ArrayList<User> getUserList() {
@@ -23,16 +23,27 @@ public class User implements Comparable<User> {
     public String getName() {
         return this.name;
     }
-    public Designation getDesignation() { return this.designation;}
+    public Designation getDesignation() {
+        return this.designation;
+    }
 
-    public void borrowBook(Book book) {
+    public ArrayList<Book> getRequestedBooksList() {
+        return this.requestedBooksList;
+    }
+
+    public void requestBook(Book book) {
         requestedBooksList.add(book);
-        Librarian.addToBookRequestsFIFO(this);
+        Librarian.addToBookRequestsFIFO(this); //todo: make the recipient private and create librarian.receiveRequest instead
         System.out.println("request created for " + book.getTitle() + " by " + this.name);
     }
 
-    public void returnBook (Book book) {
+    public void receiveBook(Book book) {
+        this.requestedBooksList.remove(book);
+        this.borrowedBooksLocker.add(book);
+    }
 
+    public void returnBook (Book book) {
+        //fixme: implement
     }
 
     public User(String name, String email, String address, Designation designation) {
@@ -46,7 +57,7 @@ public class User implements Comparable<User> {
     }
 
     @Override
-    public int compareTo(@NotNull User user) {
+    public int compareTo(User user) {
         return this.designation.getPriority().compareTo(user.designation.getPriority());
     }
 }
