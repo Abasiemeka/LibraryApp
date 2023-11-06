@@ -21,9 +21,13 @@ public class User implements Comparable<User> {
         return userList;
     }
 
+    public Integer getUserID() {
+        return userID;
+    }
     public String getName() {
         return this.name;
     }
+
     public Designation getDesignation() {
         return this.designation;
     }

@@ -31,6 +31,7 @@ public class Librarian {
         }
     }
 
+    @SuppressWarnings("unused")
     private static void decideAndIssueBooks() {
         boolean sorted = Main.chosenImplementation.equalsIgnoreCase("sorted");
         if (!sorted) {
