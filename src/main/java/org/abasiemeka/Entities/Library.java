@@ -7,21 +7,24 @@ import java.util.Objects;
 public class Library {
 
     private static HashMap<Book, ArrayList<?>> catalog = new HashMap<>();
-    private static HashMap<User, ArrayList<Book>> currentlyBorrowed = new HashMap<User, ArrayList<Book>>();
+    private static HashMap<User, ArrayList<Book>> currentlyBorrowed = new HashMap<>();
+
 
     public static HashMap<Book, ArrayList<?>> getCatalog(){
         return catalog;
     }
-
     public static void addToCatalog(Book book) {
         catalog.put(book, book.bookDataArrayList());
     }
-    public static void removeFromCatalog(Book book) { catalog.remove(book); }
+    public static void removeFromCatalog(Book book) {
+        catalog.remove(book);
+    }
+
 
     public static void displayCatalog() {
+        int sn = 1;
         for (ArrayList<?> bookData : catalog.values()) {
-            int sn = 1;
-            System.out.printf("%nsn: %s", String.valueOf(bookData));
+            System.out.printf("%n" + sn + ": %s", bookData);
             ++sn;
         }
     }

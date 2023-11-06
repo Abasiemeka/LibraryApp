@@ -1,9 +1,5 @@
 package org.abasiemeka.Enums;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.util.Comparator;
-
 public enum Designation {
     TEACHER(1), STUDENT_GRADE_2(3), STUDENT_GRADE_3(2), STUDENT_GRADE_1(4); //importance level deliberately staggered for testing purposes.
 

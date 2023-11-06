@@ -1,9 +1,9 @@
 package org.abasiemeka.Entities;
 
-import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 import org.abasiemeka.Enums.Designation;
-//import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class User implements Comparable<User> {
     private static ArrayList<User> userList = new ArrayList<>();
@@ -15,6 +15,7 @@ public class User implements Comparable<User> {
     private final Designation designation;
     private ArrayList<Book> borrowedBooksLocker = new ArrayList<>();
     private ArrayList<Book> requestedBooksList = new ArrayList<>();
+    private ArrayList<Book> toReturn = new ArrayList<>();
 
     public static ArrayList<User> getUserList() {
         return userList;
@@ -33,7 +34,7 @@ public class User implements Comparable<User> {
 
     public void requestBook(Book book) {
         requestedBooksList.add(book);
-        Librarian.addToBookRequestsFIFO(this); //todo: make the recipient private and create librarian.receiveRequest instead
+        Librarian.receiveBookRequest(this); //todo: make the recipient private and create librarian.receiveRequest instead
         System.out.println("request created for " + book.getTitle() + " by " + this.name);
     }
 
@@ -42,8 +43,11 @@ public class User implements Comparable<User> {
         this.borrowedBooksLocker.add(book);
     }
 
-    public void returnBook (Book book) {
-        //fixme: implement
+    public void returnBook (ArrayList<Book> toReturn) {
+        Librarian.retrieveBook(toReturn, this);
+        for (Book book : toReturn){
+            this.borrowedBooksLocker.remove(book);
+        }
     }
 
     public User(String name, String email, String address, Designation designation) {
