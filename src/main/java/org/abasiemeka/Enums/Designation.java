@@ -9,7 +9,7 @@ public enum Designation {
         return this.priority;
     }
 
-    private Designation(Integer priority) {
+    Designation(Integer priority) {
         this.priority = priority;
     }
 }

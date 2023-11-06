@@ -31,7 +31,7 @@ public class Librarian {
         }
     }
 
-    public static void decideAndIssueBooks() {
+    private static void decideAndIssueBooks() {
         boolean sorted = Main.chosenImplementation.equalsIgnoreCase("sorted");
         if (!sorted) {
             issueFromArrayList(bookRequestsFIFO);
@@ -56,7 +56,7 @@ public class Librarian {
         }
     }
 
-    //FIXME: only for testing. Delete after use.
+    //TODO: only for testing. Delete after use.
     public static void printBookRequestsFIFO() {
         bookRequestsFIFO.forEach(user -> System.out.println(user.getName()));
     }
