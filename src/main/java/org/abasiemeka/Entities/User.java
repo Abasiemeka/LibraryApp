@@ -34,7 +34,7 @@ public class User implements Comparable<User> {
 
     public void requestBook(Book book) {
         requestedBooksList.add(book);
-        Librarian.receiveBookRequest(this); //todo: make the recipient private and create librarian.receiveRequest instead
+        Librarian.receiveBookRequest(this);
         System.out.println("request created for " + book.getTitle() + " by " + this.name);
     }
 
