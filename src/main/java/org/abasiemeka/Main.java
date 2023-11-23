@@ -24,8 +24,6 @@ import org.abasiemeka.enums.Designation;
  */
 
 public class Main {
-cd users
-        
     public static void main(String[] args) {
         Book bible = new Book("The Holy Bible", "Numerous", "Religion", 4);
         Book mathsbook = new Book("New General Mathematics", "Osemeka", "Mathematics", 2);
