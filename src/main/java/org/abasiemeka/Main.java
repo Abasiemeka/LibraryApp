@@ -1,6 +1,9 @@
 package org.abasiemeka;
 
-import org.abasiemeka.entities.*;
+import org.abasiemeka.entities.Book;
+import org.abasiemeka.entities.Librarian;
+import org.abasiemeka.entities.Library;
+import org.abasiemeka.entities.User;
 import org.abasiemeka.enums.Designation;
 
 /**
@@ -29,32 +32,35 @@ public class Main {
         Book mathsbook = new Book("New General Mathematics", "Osemeka", "Mathematics", 2);
         Library.displayCatalog();
 
-        User andrew = new User("Andrew Teach",Designation.TEACHER);
-        System.out.println("User list contains:"); Library.getUserList().forEach(user -> System.out.println(user.getName()));
+        User andrew = new User("Andrew Teach", Designation.TEACHER);
+        System.out.println("\nUser list contains:"); Library.getUserList().forEach(user -> System.out.println(user.getName()));
         andrew.requestBook(bible);
 
-        User jose = new User("Jose Senior",Designation.SENIOR_STUDENT);
-        System.out.println("User list contains:"); Library.getUserList().forEach(user -> System.out.println(user.getName()));
+        User jose = new User("Jose Senior", Designation.SENIOR_STUDENT);
+        System.out.println("\nUser list contains:"); Library.getUserList().forEach(user -> System.out.println(user.getName()));
         jose.requestBook(bible);
         jose.requestBook(mathsbook);
 
-        User peter = new User("Peter Junior",Designation.JUNIOR_STUDENT);
-        System.out.println("User list contains:"); Library.getUserList().forEach(user -> System.out.println(user.getName()));
+        User peter = new User("Peter Junior", Designation.JUNIOR_STUDENT);
+        System.out.println("\nUser list contains:"); Library.getUserList().forEach(user -> System.out.println(user.getName()));
         peter.requestBook(bible);
 
-        User lara = new User("Lara Senior",Designation.SENIOR_STUDENT);
-        System.out.println("User list contains:"); Library.getUserList().forEach(user -> System.out.println(user.getName()));
+        User lara = new User("Lara Senior", Designation.SENIOR_STUDENT);
+        System.out.println("\nUser list contains:"); Library.getUserList().forEach(user -> System.out.println(user.getName()));
         lara.requestBook(bible);
 
-        User paul = new User("Paul Junior",Designation.JUNIOR_STUDENT);
-        System.out.println("User list contains:"); Library.getUserList().forEach(user -> System.out.println(user.getName()));
+        User paul = new User("Paul Junior", Designation.JUNIOR_STUDENT);
+        System.out.println("\nUser list contains:"); Library.getUserList().forEach(user -> System.out.println(user.getName()));
         paul.requestBook(bible);
 
-        User smalls = new User("Smalls Senior",Designation.SENIOR_STUDENT);
-        System.out.println("User list contains:"); Library.getUserList().forEach(user -> System.out.println(user.getName()));
+        User smalls = new User("Smalls Senior", Designation.SENIOR_STUDENT);
+        System.out.println("\nUser list contains:"); Library.getUserList().forEach(user -> System.out.println(user.getName()));
         smalls.requestBook(bible);
 
-//        Librarian.issueBooksByFIFO();
-        Librarian.issueBooksByPriority();
+        Librarian.issueBooksByFifo.issueBooks();
+//        Librarian.issueBooksByPriority();
+
+    
+        
     }
 }

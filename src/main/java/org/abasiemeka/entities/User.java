@@ -18,21 +18,18 @@ public class User implements Comparable<User> {
     }
 
     public void requestBook(Book book) {
-        System.out.println("\nrequest created for " + book.getTitle() + " by " + this.name);
         this.requestedBooksList.add(book);
         Librarian.receiveBookRequest(this);
     }
 
     public void receiveBook(Book book) {
         this.borrowedBooksLocker.add(book);
-        System.out.printf("%n%s has been received by %s.", book.getTitle(), this.name);
     }
 
     public User(String name, Designation designation) {
         this.name = name;
         this.designation = designation;
         Library.addToUserList(this);
-        System.out.println("\n"+this.name + " has been registered with designation " + this.designation);
     }
 
     @Override
